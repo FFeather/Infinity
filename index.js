@@ -68,7 +68,7 @@ fs.readdir("./commands/social", (err, files) => {
   });
 });
 
-client.login(procces.env.token)
+client.login(process.env.token)
 
 //leveling
 client.on("message", message => {
