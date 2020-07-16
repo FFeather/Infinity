@@ -1,5 +1,5 @@
 {
-  "default_prefix": "&",
+  "prefix": "&",
   "version": "1.0.6",
   "commands": "43",
   "ownerID": "709441303351394314"
