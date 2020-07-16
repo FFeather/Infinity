@@ -1,7 +1,4 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
-
-exports.run = async (client, message, args) => {
+var prefix_cmd = () => {
     if(!args[0]){
         let msg = new Discord.MessageEmbed()
         .setDescription(`The prefix in this server is ***${prefix}***`)

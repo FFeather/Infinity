@@ -85,13 +85,13 @@ client.on("message", message => {
       userInfo.xp = 0
       message.reply(leveled)
   }
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(config.default_prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
   if(cmd === "level") {
       let userInfo = db[message.author.id];
       let member = message.mentions.members.first();
       let embed = new Discord.MessageEmbed()
-      .setColor(0x4286f4)
+      .setColor('RANDOM')
       .addField("Level", userInfo.level)
       .addField("XP", userInfo.xp+"/100");
       if(!member) return message.channel.send(embed)
