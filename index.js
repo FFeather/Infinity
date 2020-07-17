@@ -1,7 +1,8 @@
-const { Discord, Collection, MessageEmbed } = require("discord.js");
+const Discord = require("discord.js");
+const { Collection, MessageEmbed } = require("discord.js");
 const client = new Discord.Client();
 const { sep } = require("path");
-const { success, error, warning } = require("log-symbols"); // npm i log-symbols or yarn add log-symbols
+const { success, error, warning } = require("log-symbols");
 const config = require('./config.json');
 client.config = config;
 const fs = require('fs');
