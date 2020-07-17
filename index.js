@@ -17,7 +17,7 @@ fs.readdir("./events/", (err, files) => {
 });
 
 // Creating command and aliases collection.
-["commands", "aliases"].forEach(x => bot[x] = new Collection());
+["commands", "aliases"].forEach(x => client[x] = new Collection());
 
 // A function to load all the commands.
 const load = (dir = "./commands/") => {
@@ -32,9 +32,9 @@ const load = (dir = "./commands/") => {
 			const pull = require(`${dir}/${dirs}/${file}`);
 			// we check here if the command name or command category is a string or not or check if they exist
 			if (pull.help && typeof (pull.help.name) === "string" && typeof (pull.help.category) === "string") {
-				if (bot.commands.get(pull.help.name)) return console.warn(`${warning} Two or more commands have the same name ${pull.help.name}.`);
+				if (client.commands.get(pull.help.name)) return console.warn(`${warning} Two or more commands have the same name ${pull.help.name}.`);
 				// we add the the comamnd to the collection, Map.prototype.set() for more info
-				bot.commands.set(pull.help.name, pull);
+				client.commands.set(pull.help.name, pull);
 				// we log if the command was loaded.
 				console.log(`${success} Loaded command ${pull.help.name}.`);
 
@@ -49,8 +49,8 @@ const load = (dir = "./commands/") => {
 			if (pull.help.aliases && typeof (pull.help.aliases) === "object") {
 				pull.help.aliases.forEach(alias => {
 					// we check if there is a conflict with any other aliases which have same name
-					if (bot.aliases.get(alias)) return console.warn(`${warning} Two commands or more commands have the same aliases ${alias}`);
-					bot.aliases.set(alias, pull.help.name);
+					if (client.aliases.get(alias)) return console.warn(`${warning} Two commands or more commands have the same aliases ${alias}`);
+					client.aliases.set(alias, pull.help.name);
 				});
 			}
 		}
