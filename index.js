@@ -1,12 +1,8 @@
 const Discord = require("discord.js");
-const { Collection, MessageEmbed } = require("discord.js");
 const client = new Discord.Client();
-const { sep } = require("path");
-const { success, error, warning } = require("log-symbols");
 const config = require('./config.json');
 client.config = config;
-const { fs, readdirSync } = require('fs');
-const { readFileSync } = require('fs');
+const fs = require('fs');
 const Enmap = require('enmap');
 let db = JSON.parse(fs.readFileSync("./db/database.json", "utf8"));
 client.snipes = new Discord.Collection();
@@ -20,44 +16,64 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
-["commands", "aliases"].forEach(x => client[x] = new Collection());
+client.commands = new Enmap();
 
-const load = (dir = "./commands/") => {
+fs.readdir("./commands/general/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/general/${file}`);
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
+});
 
-	readdirSync(dir).forEach(dirs => {
-		const commands = readdirSync(`${dir}${sep}${dirs}${sep}`).filter(files => files.endsWith(".js"));
+fs.readdir("./commands/fun/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/fun/${file}`);
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
+});
 
-		for (const file of commands) {
-			const pull = require(`${dir}/${dirs}/${file}`);
-			if (pull.help && typeof (pull.help.name) === "string" && typeof (pull.help.category) === "string") {
-				if (client.commands.get(pull.help.name)) return console.warn(`${warning} Two or more commands have the same name ${pull.help.name}.`);
-				client.commands.set(pull.help.name, pull);
-				console.log(`${success} Loaded command ${pull.help.name}.`);
+fs.readdir("./commands/moderation/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/moderation/${file}`);
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
+});
 
-			}
-			else {
-				console.log(`${error} Error loading command in ${dir}${dirs}. you have a missing help.name or help.name is not a string. or you have a missing help.category or help.category is not a string`);
-				continue;
-			}
-			if (pull.help.aliases && typeof (pull.help.aliases) === "object") {
-				pull.help.aliases.forEach(alias => {
-					if (client.aliases.get(alias)) return console.warn(`${warning} Two commands or more commands have the same aliases ${alias}`);
-					client.aliases.set(alias, pull.help.name);
-				});
-			}
-		}
+fs.readdir("./commands/misc/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/misc/${file}`);
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
+});
 
-	});
-};
 
-load();
-
+fs.readdir("./commands/social/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/social/${file}`);
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
+});
 
 client.login(process.env.token)
 
 //leveling
 client.on("message", message => {
-  const leveled = new MessageEmbed().setDescription('Congrats, you just leveled up!').setColor('RANDOM').setFooter(message.author.username, message.author.avatarURL())
+  const leveled = new Discord.MessageEmbed().setDescription('Congrats, you just leveled up!').setColor('RANDOM').setFooter(message.author.username, message.author.avatarURL())
   if (message.author.bot) return;
     if (!db[message.author.id]) db[message.author.id] = {
       xp: 0,
@@ -75,7 +91,7 @@ client.on("message", message => {
   if(cmd === "level") {
       let userInfo = db[message.author.id];
       let member = message.mentions.members.first();
-      let embed = new MessageEmbed()
+      let embed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .addField("Level", userInfo.level)
       .addField("XP", userInfo.xp+"/100");
