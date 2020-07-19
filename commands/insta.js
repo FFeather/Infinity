@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
         if (!args[0]) {
-            const one = new Discord.MessageEmbed().setDescription(`Please enter a account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
+            const one = new MessageEmbed().setDescription(`Please enter a account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
             message.channel.send(one)
         }
         let url, response, account, details;
@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
             account = response.data
             details = account.graphql.user
         } catch (error) {
-            const two = new Discord.MessageEmbed().setDescription(`Please enter a real account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
+            const two = new MessageEmbed().setDescription(`Please enter a real account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
             message.channel.send(two)
         }
 
