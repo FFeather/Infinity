@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require('./config.json');
 client.config = config;
+const { prefix } = require('./config.json');
 const fs = require('fs');
 let db = JSON.parse(fs.readFileSync("./db/database.json", "utf8"));
 client.snipes = new Discord.Collection();
