@@ -16,58 +16,15 @@ fs.readdir("./events/", (err, files) => {
   });
 });
 
-client.commands = new Enmap();
+client.commands = new Discord.Collection();
 
-fs.readdir("./commands/general/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/general/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, props);
-  });
-});
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-fs.readdir("./commands/fun/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/fun/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, props);
-  });
-});
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
 
-fs.readdir("./commands/moderation/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/moderation/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, props);
-  });
-});
-
-fs.readdir("./commands/misc/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/misc/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, props);
-  });
-});
-
-
-fs.readdir("./commands/social/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/social/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, props);
-  });
-});
 
 client.login(process.env.token)
 
