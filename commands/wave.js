@@ -14,7 +14,7 @@ if (!user) return message.channel.send(real)
 if(message.member === user) return message.channel.send(self)
 const embed = new Discord.MessageEmbed()
 .setDescription(`<@${message.author.id}> waved to <@${user.id}>`)
-.setImage(`https://media1.tenor.com/images/ec8227509ac286752cab0e254f183416/tenor.gif?itemid=5109972`)
+.setImage(`https://i0.wp.com/media1.giphy.com/media/xT0GqjBCkO9BEiSEOk/giphy.gif?zoom=2`)
 .setColor('RANDOM')
 .setFooter(`Waved by ${message.author.username}`, `${message.author.displayAvatarURL({ dynamic: true })}`)
 message.channel.send(embed);
