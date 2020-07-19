@@ -23,9 +23,6 @@ fs.readdir("./commands/", (err, files) => {
     if (!file.endsWith(".js")) return;
     let props = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
-    const command = require(commandName);
-    command.aliases.forEach(alias => {
-      client.aliases.set(alias, command);
     client.commands.set(commandName, props);
   });
 });
@@ -63,4 +60,3 @@ client.on("message", message => {
       if (x) console.error(x)
     });
   })
-})
