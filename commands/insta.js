@@ -4,17 +4,18 @@ const { MessageEmbed } = require('discord.js');
 module.exports.run = async (client, message, args) => {
         if (!args[0]) {
             const one = new MessageEmbed().setDescription(`Please enter a account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
-            message.channel.send(one)
+            return message.channel.send(one)
         }
         let url, response, account, details;
         try {
-            url = `https://instagram.com/${args[0]}/?__a=1`;
+            let link = args.join(" ");
+            url = `https://www.instagram.com/${link}/?__a=1`;
             response = await axios.get(url)
             account = response.data
             details = account.graphql.user
         } catch (error) {
             const two = new MessageEmbed().setDescription(`Please enter a real account name.`).setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
-            message.channel.send(two)
+            return message.channel.send(two)
         }
 
         const embed = new MessageEmbed()
