@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
         const successEmbed = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setTitle('Report submitted')
-        .setDescription('**Report submitted, suggestion ID:** `' + reportid + "`\n**Bug:** " + bugmessage)
+        .setDescription('**Report submitted, report ID:** `' + reportid + "`\n**Bug:** " + bugmessage)
         .setFooter(`Submitted by: ` + message.author.username, message.author.avatarURL());
         const serverBugEmbed = new Discord.MessageEmbed()
         .setColor('RANDOM')

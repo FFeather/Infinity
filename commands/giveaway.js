@@ -6,6 +6,9 @@ exports.run = async (client, message, args) => {
   const botperms = new Discord.MessageEmbed().setColor('RANDOM').setDescription('Sorry, i don\'t have `MANAGE_MESSAGES` perms for that.').setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL());
   if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send(botperms)
 
+  const provide = new Discord.MessageEmbed().setColor('RANDOM').setDescription('usage: `&giveaway [time] [prize]`.').setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL());
+  if(!args[0]) return message.channel.send(provide);
+
   if (message.member.hasPermission("MANAGE_MESSAGES")) {
 
     let channel = message.mentions.channels.first();
@@ -74,5 +77,8 @@ exports.run = async (client, message, args) => {
       .setTimestamp(Date.now() + ms(args[0]))
       .setColor(`RANDOM`))
     }, ms(args[0]));
+  } else {
+    const noperms = new Discord.MessageEmbed().setDescription('You need `MANAGE_MESSAGES` permissions to make an announcement').setColor('RANDOM').setFooter(`Attempted by: ` + message.author.username, message.author.avatarURL())
+    message.channel.send(noperms)
   }
 }

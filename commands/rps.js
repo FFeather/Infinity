@@ -17,7 +17,7 @@ usercho = "Rock"
 var winner = 0;
 if(args == "rock" || args=="r"){
     if(which == "Rock") {
-        winner = "No one. We chose the same thing."
+        winner = "Draw."
     }
     else if(which == "Paper") {
         winner = "I won!"
@@ -28,7 +28,7 @@ if(args == "rock" || args=="r"){
     }
     else if(args=="paper"|| args=="p"){
         if(which == "Paper") {
-            winner = "No one. We chose the same thing"
+            winner = "Draw."
         }
         else if(which == "Scissors") {
             winner = "I won!"
@@ -39,7 +39,7 @@ if(args == "rock" || args=="r"){
     }
     else if (args=="scissors"||args=="s") {
         if(which == "Scissors") {
-            winner = "No one. We chose the same thing."
+            winner = "Draw."
         }
         else if(which == "Rock") {
             winner = "I won!"
@@ -65,7 +65,7 @@ else{
                 value: `${which}`
             }, 
             {
-                name: ` The winner is... `,
+                name: ` The winner is: `,
                 value: `${winner}`
             },],
             footer: {
