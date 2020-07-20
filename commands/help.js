@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
   else if (args[0] === 'misc') {
     const misc = new Discord.MessageEmbed()
     .setTitle('**🔰 | Misc help**')
-    .setDescription('Everything in [] is required | Everything in <> is optional. \n\n**botinvite** \nInvite infinity. \n\n**support** \nSends an invite for our discord server. \n\n**bug [bug]** \nReport a bug. \n\n**suggest [suggestion]** \nSuggest something. \n\n**covid [country/all]** \nShows covid stats. \n\n**insta [accname]** \nShows details about an instagram account.')
+    .setDescription('Everything in [] is required | Everything in <> is optional. \n\n**botinvite** \nInvite infinity. \n\n**support** \nSends an invite for our discord server. \n\n**bug [bug]** \nReport a bug. \n\n**suggest [suggestion]** \nSuggest something. \n\n**covid [country/all]** \nShows covid stats. \n\n**haste <ft> <text>** \nUploads your message to hastebin.**')
     .setColor('RANDOM')
     .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL())
     return message.channel.send(misc);
