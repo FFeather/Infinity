@@ -1,4 +1,4 @@
-const { MessageEmbed } = module.require("discord.js");
+const Discord = module.require("discord.js");
 const moment = require('moment');
 
 module.exports.run = async (client, message, args) => {
@@ -44,7 +44,7 @@ const regions = {
 
     const [humans, bots] = members.partition(member => !member.user.bot);
 
-		const embed = new MessageEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setDescription(`**Guild information for __${message.guild.name}__**`)
 			.setColor('RANDOM')
 			.setThumbnail(message.guild.iconURL({ dynamic: true }))
