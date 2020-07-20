@@ -48,12 +48,8 @@ const embed = new MessageEmbed()
 				`**• Game:** ${member.user.presence.game || 'Not playing a game.'}`,
 				`\u200b`
 			])
+
+            .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL());
 		 message.channel.send(embed);
-        } catch (err) {
-                const errEm = new MessageEmbed()
-                .setTitle(`An Unknown error occured`)
-                .setDescription(`Please run hx!bugreport <error message> to report this. Replace <error message> with the error down below`)
-                .addField(`Error:`, "```"+client.clean(err)+"```")
-                message.channel.send(errEm)
-            }
+        }
 }
