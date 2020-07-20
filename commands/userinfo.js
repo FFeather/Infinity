@@ -48,8 +48,10 @@ const embed = new MessageEmbed()
 				`**• Game:** ${member.user.presence.game || 'Not playing a game.'}`,
 				`\u200b`
 			])
-
             .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL());
 		 message.channel.send(embed);
-        }
-}
+		} catch (err) {
+			const errembed = new Discord.MessageEmbed().setColor('RANDOM').setDescription('Error, please &bug report this to the owner.').setFooter(message.author.username, message.author.avatarURL());
+			message.channel.send(errembed);
+		  }
+		}
