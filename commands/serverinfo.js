@@ -79,6 +79,6 @@ const regions = {
 				`**• Offline:** ${members.filter(member => member.presence.status === 'offline').size}`,
 				'\u200b'
 			])
-			.setTimestamp();
+            .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL());
 		return message.channel.send(embed);
   }
