@@ -29,6 +29,8 @@ module.exports.run = async (client, message, args) => {
 			`**• Website:** https://www.infinitybot.ml/`,
 			`**• Support:** https://discord.com/invite/XzjcFGg`,
 			`\u200b`	
-	])		
-		  message.channel.send(embed);
+	])	
+
+            .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL());	
+		  message.channel.send(embed); 
     }
