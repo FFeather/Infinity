@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
 
 		const member = message.client 
 		const embed = new MessageEmbed()
-			.setTitle('Infinity V1.0.6')
+			.setTitle('Infinity V1.0.7')
 			.setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
 			.setColor('RANDOM')
 			.addField('General', [
