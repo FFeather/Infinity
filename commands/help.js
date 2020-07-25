@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
   
   if (!args.length) {
     const help = new Discord.MessageEmbed()
-    .setAuthor('**🔰 | Help menu**', member.user.displayAvatarURL, 'https://jectaunscripted.gitbook.io/infinity/commands')
+    .setAuthor('**🔰 | Help menu**', 'https://cdn.discordapp.com/avatars/728986900161101846/d2628b0abb81c343e12441f001b659d2.png?size=4096', 'https://jectaunscripted.gitbook.io/infinity/commands')
     .setDescription('To see information about a command or search a command use `&help [category]`.')
     .addField(`📖 | general`, `Infinity's standard bot commands.`,true)
     .addField(`🚨 | moderation`,`Moderation commands to keep your server safe.`,true)
