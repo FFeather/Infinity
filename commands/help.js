@@ -16,7 +16,6 @@ exports.run = async (client, message, args) => {
     .setFooter(`Requested by: ` + message.author.username, message.author.avatarURL());
     message.channel.send(help);
   }
-
   if (args[0] === 'general') {
     const gen = new Discord.MessageEmbed()
     .setTitle('**📖 | General help**')
